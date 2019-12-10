@@ -14,7 +14,7 @@ int main() {
     int n = 0, f = 0;
     freopen("input.txt","r",stdin);
     scanf("%d %d", &n, &f);
-    Node *arr = malloc(sizeof(Node)*n);
+    Node *arr = (Node *)malloc(sizeof(Node)*n);
     for (int i = 0; i < n; i++) {
         scanf("%lf %d", &arr[i].val, &arr[i].next_idx);
     }

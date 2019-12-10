@@ -17,10 +17,7 @@ typedef struct node_st {
 
 node generate_node(char *data) {
     node *buf = malloc(sizeof(node));
-    for (int i = 0; i < (int) strlen(data); i++) {
-        buf->str[i] = data[i];
-    }
-    buf->str[strlen(data)] = 0;
+    strcpy(data, buf->str);
     return *buf;
 }
 
@@ -42,7 +39,6 @@ void push(node *arr, int id, int *f, int *max_id) {
 
 void del(node *arr, int id, int *f, int *max_id) {
     int buf = *f;
-    int cnt = 0;
     if (id == -1) {
         *f = arr[*f].next;
     } else {
@@ -88,7 +84,7 @@ int main() {
 
         printf("===\n");
 
-        free(arr);
+        free(arr);  
     }
     return 0;
 }
