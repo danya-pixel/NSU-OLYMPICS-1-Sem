@@ -1,1 +1,0 @@
-$i = 12;cd ..\;mkdir Tour$i;cd Tour$i; for ($i = 1; $i -le 10; $i++){ New-Item -Name $i".c" }
