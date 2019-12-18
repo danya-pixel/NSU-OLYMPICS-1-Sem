@@ -4,13 +4,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <stdint.h>
 
 #define max_n 10000
 
-int convert(uint32_t num)
+int convert(unsigned int num)
 {
-    uint32_t b0,b1,b2,b3;
+    unsigned int b0,b1,b2,b3;
 
     b0 = (num & 0x000000ff) << 24u;
     b1 = (num & 0x0000ff00) << 8u;
@@ -38,7 +37,7 @@ int main() {
     for(int i =0;i<(int)n;i++)
     {
         if(is_little) buf[i]= convert(buf[i]);
-        sum+=buf[i];
+        sum+= (int) buf[i];
     }
     if(is_little)
         sum = convert(sum);
