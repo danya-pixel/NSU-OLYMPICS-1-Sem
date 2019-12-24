@@ -31,12 +31,12 @@ int main() {
         n = convert(n);
         is_little = 1;
     }
-    unsigned int *buf = (unsigned int *)malloc(sizeof(unsigned int)*n);
-    fread(buf, sizeof(buf), n, in_file);
+    unsigned int tmp;
     for(int i =0;i<(int)n;i++)
     {
-        if(is_little) buf[i]= convert(buf[i]);
-        sum+= (int) buf[i];
+        fread(&tmp, sizeof(tmp), 1, in_file);
+        if(is_little) tmp= convert(tmp);
+        sum += (int) tmp;
     }
     if(is_little)
         sum = convert(sum);
