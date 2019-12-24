@@ -3,10 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
-#include <math.h>
-#include <string.h>
-
-#define size 10
 
 typedef struct node {
     int val;
@@ -15,7 +11,6 @@ typedef struct node {
 } node;
 
 void push_top(node *set, int *first, int *last, int *n, int id, int data) {
-    set[*n].val = data;
     if (id == -1) {
         set[*n].nextIdx = *first;
         set[*n].prevIdx = -1;
@@ -32,6 +27,7 @@ void push_top(node *set, int *first, int *last, int *n, int id, int data) {
         } else
             *last = *n;
     }
+    set[*n].val = data;
     printf("%d\n", *n);
     *n += 1;
 }
@@ -71,16 +67,11 @@ void pop(node *set, int *last, int *first, int id) {
     if (set[id].nextIdx != -1) {
         set[set[id].nextIdx].prevIdx = set[id].prevIdx;
     }
-    if (set[id].nextIdx == -1)
-        *last = set[id].prevIdx;
-    if (set[id].prevIdx == -1)
-        *first = set[id].nextIdx;
 }
 
 
 int main() {
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    
     int t = 0;
     scanf("%d", &t);
     for (int k = 0; k < t; k++) {
