@@ -1,5 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
-
+#define GENERATE (node *) malloc(sizeof(node))
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -9,13 +9,10 @@ typedef struct node {
     struct node *next;
 } node;
 
-node *generate_node() {
-    return (node *) malloc(sizeof(node));
-}
 
 node *push(node *p, int data, int cur) {
     node *new_el = p;
-    new_el = generate_node();
+    new_el = GENERATE;
     new_el->data = data;
     new_el->next = p;
     return new_el;
@@ -29,7 +26,7 @@ int main() {
     scanf("%d", &cur);
     while (scanf("%d", &buf) != EOF) {
         if (head == NULL) {
-            head = generate_node();
+            head = GENERATE;
             head->data = buf;
             head->next = NULL;
             p = head;
@@ -37,15 +34,11 @@ int main() {
             p = push(p, buf, cur);
     }
     while (p != NULL) {
-        if (p->next != NULL && p->next->data == cur)
-        {
-            node *b = p;
-            p = p->next;
-            free(b);
-            continue;
-        }
-        printf("%d ", p->data);
+        node *b = p;
+        if (!(p->next != NULL && p->next->data == cur))
+            printf("%d ", p->data);
         p = p->next;
+        free(b);
     }
     return 0;
 }
