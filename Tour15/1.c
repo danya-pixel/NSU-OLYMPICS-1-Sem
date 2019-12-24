@@ -10,7 +10,6 @@ int main() {
     in_file=fopen("input.bin","rb");
     out_file=fopen("output.bin","wb");
     fread(&a, sizeof(int),1,in_file);
-    fseek(in_file, sizeof(int),0);
     fread(&b, sizeof(int),1,in_file);
     int ans = (int)floor((double)((long long)a + (long long)b) / 2);
     fwrite(&ans, sizeof(ans),1,out_file);
