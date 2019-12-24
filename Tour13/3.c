@@ -67,6 +67,10 @@ void pop(node *set, int *last, int *first, int id) {
     if (set[id].nextIdx != -1) {
         set[set[id].nextIdx].prevIdx = set[id].prevIdx;
     }
+    if (set[id].nextIdx == -1)	
+        *last = set[id].prevIdx;	
+    if (set[id].prevIdx == -1)	
+        *first = set[id].nextIdx;
 }
 
 
