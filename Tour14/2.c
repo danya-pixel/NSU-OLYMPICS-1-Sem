@@ -12,17 +12,15 @@ typedef struct tree {
 
 
 void push(tree *root, int val) {
-
-    int cmp = root->val - val;
-    if (cmp == 0) return;
-    else if (cmp > 0) {
+    if (root->val == val) return;
+    if (root->val > val) {
         if (root->left == NULL) {
             tree *new_node = GENERATE;
             new_node->val = val;
             new_node->left = NULL;
             new_node->right = NULL;
             root->left = new_node;
-            new_node->lvl = root->lvl +1;
+            new_node->lvl = root->lvl + 1;
             return;
         }
         push(root->left, val);
@@ -33,7 +31,7 @@ void push(tree *root, int val) {
             root->right = new_node;
             new_node->left = NULL;
             new_node->right = NULL;
-            new_node->lvl = root->lvl +1;
+            new_node->lvl = root->lvl + 1;
             return;
         }
         push(root->right, val);
