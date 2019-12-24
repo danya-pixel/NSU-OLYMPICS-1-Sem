@@ -43,6 +43,7 @@ void cntHeight(tree *root, int *maxLevel) {
     if (root != NULL) {
         if (root->left == NULL && root->right == NULL && root->lvl > *maxLevel) {
             *maxLevel = root->lvl;
+            return;
         }
         cntHeight(root->left, maxLevel);
         cntHeight(root->right, maxLevel);
