@@ -6,9 +6,9 @@
 
 #define max_n 10000
 
-int convert(unsigned int num)
+int convert(int num)
 {
-    unsigned int b0,b1,b2,b3;
+    int b0,b1,b2,b3;
 
     b0 = (num & 0x000000ff) << 24u; //Последний байт переносим на первый
     b1 = (num & 0x0000ff00) << 8u; //3 байт -> 2 байт
@@ -20,7 +20,7 @@ int convert(unsigned int num)
 
 int main() {
     int sum = 0;
-    unsigned int n = 0;
+    int n = 0;
     FILE *in_file, *out_file;
     in_file = fopen("input.bin", "rb");
     out_file = fopen("output.bin", "wb");
@@ -31,11 +31,11 @@ int main() {
         n = convert(n);
         is_little = 1;
     }
-    unsigned int tmp;
+    int tmp;
     for(int i =0;i<(int)n;i++)
     {
         fread(&tmp, sizeof(tmp), 1, in_file);
-        if(is_little) tmp= convert(tmp);
+        if(is_little) tmp = convert(tmp);
         sum += (int) tmp;
     }
     if(is_little)
