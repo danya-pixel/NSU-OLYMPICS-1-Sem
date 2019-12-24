@@ -52,22 +52,18 @@ void cntHeight(tree *root, int *maxLevel) {
 
 int main() {
     freopen("input.txt", "r", stdin);
-    tree *root = (tree *) malloc(sizeof(tree));
-    _Bool is_first = 1;
+    tree *root = GENERATE;
     int a = 0;
+    scanf("%d", &a);
+    root->val = a;
+    root->right = NULL;
+    root->left = NULL;
+    root->lvl = 0;
     while (scanf("%d", &a) != EOF) {
-        if (is_first) {
-            root->val = a;
-            root->right = NULL;
-            root->left = NULL;
-            root->lvl = 0;
-            is_first = 0;
-        } else
-            push(root, a);
+        push(root, a);
     }
     int lvl = 0;
     cntHeight(root, &lvl);
     printf("%d", lvl);
-
     return 0;
 }
