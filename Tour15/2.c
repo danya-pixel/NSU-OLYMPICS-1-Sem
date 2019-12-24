@@ -11,10 +11,10 @@ int convert(unsigned int num)
 {
     unsigned int b0,b1,b2,b3;
 
-    b0 = (num & 0x000000ff) << 24u;
-    b1 = (num & 0x0000ff00) << 8u;
-    b2 = (num & 0x00ff0000) >> 8u;
-    b3 = (num & 0xff000000) >> 24u;
+    b0 = (num & 0x000000ff) << 24u; //Последний байт переносим на первый
+    b1 = (num & 0x0000ff00) << 8u; //3 байт -> 2 байт
+    b2 = (num & 0x00ff0000) >> 8u; //2 байт -> 3 байт
+    b3 = (num & 0xff000000) >> 24u; //Первый байт в последний
 
     return (int)(b0 | b1 | b2 | b3);
 }
