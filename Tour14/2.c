@@ -1,5 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
-
+#define GENERATE (tree *)malloc(sizeof(tree))
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -11,17 +11,13 @@ typedef struct tree {
 } tree;
 
 
-tree *generate_tree() {
-    return (tree *) malloc(sizeof(tree));
-}
-
 void push(tree *root, int val) {
 
     int cmp = root->val - val;
     if (cmp == 0) return;
     else if (cmp > 0) {
         if (root->left == NULL) {
-            tree *new_node = generate_tree();
+            tree *new_node = GENERATE;
             new_node->val = val;
             new_node->left = NULL;
             new_node->right = NULL;
@@ -32,7 +28,7 @@ void push(tree *root, int val) {
         push(root->left, val);
     } else {
         if (root->right == NULL) {
-            tree *new_node = generate_tree();
+            tree *new_node = GENERATE;
             new_node->val = val;
             root->right = new_node;
             new_node->left = NULL;
